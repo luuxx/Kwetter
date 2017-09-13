@@ -24,7 +24,7 @@ public class CreatUsers {
         user.setPassword("TestPW");
         user.setBio("I'm not a person I'm just a figment of my creators imagination.");
         user.setLocation("The Mainframe");
-        user.setWebAddres("Localhost:5432");
+        user.setWebAddress("Localhost:5432");
         user.setFollowing(new ArrayList<Users>(){{
             add( entitymanager.find(Users.class, 352));}});
 

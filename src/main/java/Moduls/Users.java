@@ -33,7 +33,7 @@ public class Users {
     private String Name;
     private String Bio;
     private String Location;
-    private String WebAddres;
+    private String WebAddress;
 
     @OneToMany(fetch=FetchType.LAZY)
     @CascadeOnDelete
@@ -118,12 +118,12 @@ public class Users {
         Location = location;
     }
 
-    public String getWebAddres() {
-        return WebAddres;
+    public String getWebAddress() {
+        return WebAddress;
     }
 
-    public void setWebAddres(String webAddres) {
-        WebAddres = webAddres;
+    public void setWebAddress(String webAddress) {
+        WebAddress = webAddress;
     }
 
     @JsonIgnore
