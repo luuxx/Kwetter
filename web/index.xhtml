@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+<h:head></h:head>
+<h:body>
+    <p:growl id="growl" life="2000" />
+
+    <p:commandButton value="Ajax Submit" id="ajax" update="growl" actionListener="#{mainPageView.searchButtonAction}" styleClass="ui-priority-primary" />
+    <p:panel id="basic" header="Kwetters" style="margin-bottom:20px">
+        <p:dataTable var="message" value="#{messageService.getAllMessages()}">
+            <p:column headerText="Sender">
+                <h:outputText value="#{message.owner.username}" />
+            </p:column>
+            <p:column headerText="Message">
+                <h:outputText value="#{message.message}" />
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+</h:body>
+</html>

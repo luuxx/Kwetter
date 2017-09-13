@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="PostgreSQL - kwetter@localhost">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.0">
+    <root id="1"/>
+    <database id="2" parent="1" name="kwetter">
+      <ObjectId>16394</ObjectId>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </database>
+    <schema id="3" parent="2" name="public">
+      <ObjectId>2200</ObjectId>
+      <IntrospectionTimestamp>2017-08-27.00:26:22.815</IntrospectionTimestamp>
+      <IntrospectionStateNumber>595</IntrospectionStateNumber>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="4" parent="2" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+    </schema>
+    <schema id="5" parent="2" name="pg_toast">
+      <ObjectId>99</ObjectId>
+    </schema>
+    <schema id="6" parent="2" name="pg_temp_1">
+      <ObjectId>11848</ObjectId>
+    </schema>
+    <schema id="7" parent="2" name="pg_toast_temp_1">
+      <ObjectId>11849</ObjectId>
+    </schema>
+    <schema id="8" parent="2" name="information_schema">
+      <ObjectId>12113</ObjectId>
+    </schema>
+    <table id="9" parent="3" name="hashtag">
+      <ObjectId>16475</ObjectId>
+      <StateNumber>595</StateNumber>
+    </table>
+    <table id="10" parent="3" name="message">
+      <ObjectId>16470</ObjectId>
+      <StateNumber>594</StateNumber>
+    </table>
+    <table id="11" parent="3" name="message_hashtag">
+      <ObjectId>16480</ObjectId>
+      <StateNumber>595</StateNumber>
+    </table>
+    <table id="12" parent="3" name="sequence">
+      <ObjectId>16442</ObjectId>
+      <StateNumber>573</StateNumber>
+    </table>
+    <table id="13" parent="3" name="users">
+      <ObjectId>16447</ObjectId>
+      <StateNumber>593</StateNumber>
+    </table>
+    <table id="14" parent="3" name="users_users">
+      <ObjectId>16455</ObjectId>
+      <StateNumber>587</StateNumber>
+    </table>
+    <column id="15" parent="9" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>591</StateNumber>
+    </column>
+    <column id="16" parent="9" name="tag">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>591</StateNumber>
+    </column>
+    <index id="17" parent="9" name="hashtag_pkey">
+      <ObjectId>16478</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="18" parent="9" name="hashtag_pkey">
+      <ObjectId>16479</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>hashtag_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="19" parent="10" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>590</StateNumber>
+    </column>
+    <column id="20" parent="10" name="likes">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>590</StateNumber>
+    </column>
+    <column id="21" parent="10" name="message">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>590</StateNumber>
+    </column>
+    <column id="22" parent="10" name="owner_id">
+      <Position>4</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>590</StateNumber>
+    </column>
+    <index id="23" parent="10" name="message_pkey">
+      <ObjectId>16473</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="24" parent="10" name="message_pkey">
+      <ObjectId>16474</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>message_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="25" parent="10" name="fk_message_owner_id">
+      <ObjectId>16485</ObjectId>
+      <ColNames>owner_id</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="26" parent="11" name="message_id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>592</StateNumber>
+    </column>
+    <column id="27" parent="11" name="hashtags_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>592</StateNumber>
+    </column>
+    <index id="28" parent="11" name="message_hashtag_pkey">
+      <ObjectId>16483</ObjectId>
+      <ColNames>message_id
+hashtags_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="29" parent="11" name="message_hashtag_pkey">
+      <ObjectId>16484</ObjectId>
+      <ColNames>message_id
+hashtags_id</ColNames>
+      <UnderlyingIndexName>message_hashtag_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="30" parent="11" name="fk_message_hashtag_message_id">
+      <ObjectId>16490</ObjectId>
+      <ColNames>message_id</ColNames>
+      <RefTableName>message</RefTableName>
+      <RefKeyName>message_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="31" parent="11" name="fk_message_hashtag_hashtags_id">
+      <ObjectId>16495</ObjectId>
+      <ColNames>hashtags_id</ColNames>
+      <RefTableName>hashtag</RefTableName>
+      <RefKeyName>hashtag_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="32" parent="12" name="seq_name">
+      <Position>1</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>573</StateNumber>
+    </column>
+    <column id="33" parent="12" name="seq_count">
+      <Position>2</Position>
+      <DataType>numeric(38)|0</DataType>
+      <StateNumber>573</StateNumber>
+    </column>
+    <index id="34" parent="12" name="sequence_pkey">
+      <ObjectId>16445</ObjectId>
+      <ColNames>seq_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="35" parent="12" name="sequence_pkey">
+      <ObjectId>16446</ObjectId>
+      <ColNames>seq_name</ColNames>
+      <UnderlyingIndexName>sequence_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="36" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>584</StateNumber>
+    </column>
+    <column id="37" parent="13" name="bio">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>584</StateNumber>
+    </column>
+    <column id="38" parent="13" name="location">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>584</StateNumber>
+    </column>
+    <column id="39" parent="13" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>584</StateNumber>
+    </column>
+    <column id="40" parent="13" name="password">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>584</StateNumber>
+    </column>
+    <column id="41" parent="13" name="username">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>584</StateNumber>
+    </column>
+    <column id="42" parent="13" name="webaddres">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>584</StateNumber>
+    </column>
+    <index id="43" parent="13" name="users_pkey">
+      <ObjectId>16453</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="44" parent="13" name="users_pkey">
+      <ObjectId>16454</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="45" parent="14" name="users_id">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>585</StateNumber>
+    </column>
+    <column id="46" parent="14" name="following_id">
+      <Position>2</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>585</StateNumber>
+    </column>
+    <index id="47" parent="14" name="users_users_pkey">
+      <ObjectId>16458</ObjectId>
+      <ColNames>users_id
+following_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="48" parent="14" name="users_users_pkey">
+      <ObjectId>16459</ObjectId>
+      <ColNames>users_id
+following_id</ColNames>
+      <UnderlyingIndexName>users_users_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="49" parent="14" name="fk_users_users_users_id">
+      <ObjectId>16460</ObjectId>
+      <ColNames>users_id</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="50" parent="14" name="fk_users_users_following_id">
+      <ObjectId>16465</ObjectId>
+      <ColNames>following_id</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

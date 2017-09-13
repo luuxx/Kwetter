@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>#{userController.findById(352).name}</title>
+</h:head>
+<h:body>
+    <div class="ui-g">
+        <div class="ui-g-12 ui-md-10 ui-g-nopad">
+            <div class="ui-g-12 ui-g-nopad">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                        <p:panel id="Profile" header="Profile" style="margin-bottom:20px">
+                            Username : #{userController.findById(352).username}
+                        </p:panel>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:panel id="info" header="Info" style="margin-bottom:20px">
+                            <div class="ui-g">
+                                <div class="ui-g-12 ui-md-4">
+                                    Name
+                                </div>
+                                <div class="ui-g-12 ui-md-8">
+                                    #{userController.findById(352).name}
+                                </div>
+                            </div>
+                            <div class="ui-g">
+                                <div class="ui-g-12 ui-md-4">
+                                    Bio
+                                </div>
+                                <div class="ui-g-12 ui-md-8">
+                                    #{userController.findById(352).bio}
+                                </div>
+                            </div>
+                            <div class="ui-g">
+                                <div class="ui-g-12 ui-md-4">
+                                    Location
+                                </div>
+                                <div class="ui-g-12 ui-md-8">
+                                    #{userController.findById(352).location}
+                                </div>
+                            </div>
+                            <div class="ui-g">
+                                <div class="ui-g-12 ui-md-4">
+                                    Web
+                                </div>
+                                <div class="ui-g-12 ui-md-8">
+                                    #{userController.findById(352).webAddres}
+                                </div>
+                            </div>
+
+                        </p:panel>
+                    </div>
+                </div>
+
+                <div class="ui-g">
+                    <p:panel id="kwetters" header="Own Kwetters" style="margin-bottom:20px">
+                        <p:dataTable var="message" value="#{messageService.getMessagesOfUser(352)}">
+                            <p:column headerText="Sender">
+                                <h:outputText value="#{message.owner.name}" />
+                            </p:column>
+                            <p:column headerText="Message">
+                                <h:outputText value="#{message.message}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <p:panel id="following" header="Following" style="margin-bottom:20px">
+                        <p:dataTable var="following" value="#{userController.getFollowing(352)}">
+                            <p:column>
+                                <h:outputText value="#{following.name}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>
