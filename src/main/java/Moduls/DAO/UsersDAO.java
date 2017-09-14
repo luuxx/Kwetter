@@ -16,7 +16,7 @@ import java.util.List;
 public class UsersDAO implements IUsersDAO {
 
     @PersistenceContext
-    protected EntityManager entitymanager;
+    private EntityManager entitymanager;
 
     public void persist(Users entity) {
         entitymanager.persist(entity);
