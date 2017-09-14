@@ -1,6 +1,5 @@
-import Moduls.Hashtag
-import Moduls.Message
-import Moduls.Users
+package Moduls
+
 import spock.lang.Specification
 
 class MessageTest extends Specification {
