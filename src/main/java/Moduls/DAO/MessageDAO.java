@@ -17,7 +17,7 @@ import java.util.List;
 public class MessageDAO implements IMessageDAO {
 
     @PersistenceContext
-    EntityManager entitymanager;
+    private EntityManager entitymanager;
 
 
     public void persist(Message entity) {
@@ -30,12 +30,10 @@ public class MessageDAO implements IMessageDAO {
     }
 
     public Message findById(int id) {
-        System.out.println("Getting data");
         return entitymanager.find(Message.class,id);
     }
 
     public List<Message> MessagesByOwner(int owner_id) {
-        System.out.println("Getting data");
         return entitymanager.createNamedQuery("Message.listByOwner", Message.class).setParameter("id",owner_id).getResultList();
     }
 
@@ -45,5 +43,9 @@ public class MessageDAO implements IMessageDAO {
 
     public List<Message> getAllMessages(int number) {
         return entitymanager.createNamedQuery("Message.getAllMessages", Message.class).setMaxResults(number).getResultList();
+    }
+
+    private void setEntityManager(EntityManager entityManager){
+        entitymanager = entityManager;
     }
 }
