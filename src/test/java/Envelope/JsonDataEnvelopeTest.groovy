@@ -58,4 +58,18 @@ class JsonDataEnvelopeTest extends Specification{
         then:
         notThrown(IllegalArgumentException)
     }
+
+    def "Check to see if #links value equals the set data"(){
+        setup:
+        JsonDataEnvelope envelope = new JsonDataEnvelope()
+        List<Link> linkList = new ArrayList<>()
+        Link link = new Link()
+        linkList.add(link)
+
+        when:
+        envelope.setLink(linkList)
+
+        then:
+        envelope.getLinks() == linkList
+    }
 }
