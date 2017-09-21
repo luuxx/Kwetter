@@ -36,7 +36,7 @@ class JsonBasicEnvelopeTest extends Specification{
         envelope.setErrorMsg(errormsg)
 
         then:
-        envelope.getErrorMsg(errormsg)
+        envelope.getErrorMsg() == errormsg
     }
 
 }
