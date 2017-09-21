@@ -8,6 +8,13 @@ import Provider.JsonEnvlope.JsonDataEnvelope
 import spock.lang.Specification
 
 class JsonDataEnvelopeTest extends Specification{
+
+    JsonDataEnvelope envelope;
+
+    def setup(){
+        envelope = new JsonDataEnvelope()
+    }
+
     def "check if class exits"(){
         when:
         JsonDataEnvelope envelope = new JsonDataEnvelope()
@@ -19,7 +26,6 @@ class JsonDataEnvelopeTest extends Specification{
     def "Check to see if #link is a set"(){
         setup:
         Link link = new Link()
-        JsonDataEnvelope envelope = new JsonDataEnvelope()
 
         when:
         envelope.setLink(link)
@@ -31,7 +37,6 @@ class JsonDataEnvelopeTest extends Specification{
     def "Check to see if set #data equals the given object"(){
         setup:
         Object o = new Object()
-        JsonDataEnvelope envelope = new JsonDataEnvelope()
 
         when:
         envelope.setData(o)
@@ -43,7 +48,6 @@ class JsonDataEnvelopeTest extends Specification{
 
     def "Check to see if data can contain different types of objects"(){
         setup:
-        JsonDataEnvelope envelope = new JsonDataEnvelope()
         Users users = new Users()
         Hashtag hashtag = new Hashtag()
         Message message = new Message()
@@ -61,7 +65,6 @@ class JsonDataEnvelopeTest extends Specification{
 
     def "Check to see if #links value equals the set data"(){
         setup:
-        JsonDataEnvelope envelope = new JsonDataEnvelope()
         List<Link> linkList = new ArrayList<>()
         Link link = new Link()
         linkList.add(link)

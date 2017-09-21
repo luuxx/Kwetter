@@ -4,6 +4,13 @@ import Provider.JsonEnvlope.JsonBasicEnvelope
 import spock.lang.Specification
 
 class JsonBasicEnvelopeTest extends Specification{
+
+    JsonBasicEnvelope envelope
+
+    def setup(){
+        envelope = new JsonBasicEnvelope()
+    }
+
     def "check if class exits"(){
         when:
         JsonBasicEnvelope envelope = new JsonBasicEnvelope()
@@ -13,9 +20,6 @@ class JsonBasicEnvelopeTest extends Specification{
     }
 
     def "#envlope status should mach the value that is set"(){
-        setup:
-        JsonBasicEnvelope envelope = new JsonBasicEnvelope()
-
         when:
         envelope.setStatus("SUCCESS")
 
@@ -26,7 +30,6 @@ class JsonBasicEnvelopeTest extends Specification{
 
     def "#envlope error message should mach the set value"(){
         setup:
-        JsonBasicEnvelope  envelope = new JsonBasicEnvelope()
         String errormsg = "This test returned no error so this should create a nice paradox"
 
         when:
