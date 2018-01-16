@@ -136,7 +136,6 @@ public class MessageServiceRest {
         }
     }
 
-
     @GET
     @Produces("application/json")
     @Path("/removemessage/{id}")
@@ -167,9 +166,5 @@ public class MessageServiceRest {
             json.setErrorMsg(e.getMessage());
             return Response.ok().entity(json).build();
         }
-
-
     }
-
-
 }
