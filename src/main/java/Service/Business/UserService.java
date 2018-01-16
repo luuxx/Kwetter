@@ -17,7 +17,12 @@ public class UserService implements IUserService {
 
     @Override
     public Users findByUserName(String username) {
-        return dao.findByUserName(username);
+        try {
+            return dao.findByUserName(username);
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

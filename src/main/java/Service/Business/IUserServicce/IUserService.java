@@ -5,10 +5,10 @@ import Moduls.Users;
 import java.util.List;
 
 public interface IUserService {
-    public Users findByUserName (String username);
-    public Users findById(int id);
-    public Users findByName(String name);
-    public List<Users> findAllFollowing(int user_id);
-    public long countAllFollowing(int user_id);
-    public long countAllFollowers(int user_id);
+    Users findByUserName (String username);
+    Users findById(int id);
+    Users findByName(String name);
+    List<Users> findAllFollowing(int user_id);
+    long countAllFollowing(int user_id);
+    long countAllFollowers(int user_id);
 }

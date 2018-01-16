@@ -18,7 +18,7 @@ import java.util.List;
 public class UserServiceRest{
 
     @Inject
-    IUserService userService;
+    private IUserService userService;
 
     // The Java method will process HTTP GET requests
     @GET
