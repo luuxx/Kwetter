@@ -7,10 +7,12 @@ import Moduls.Users;
 import Provider.Authenticator;
 import Provider.JsonEnvlope.JsonBasicEnvelope;
 import Provider.JsonEnvlope.JsonDataEnvelope;
-import Provider.MyJacksonJsonProvider;
+import Service.Websockets.MessageSessionHandler;
 import org.primefaces.json.JSONObject;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.json.spi.JsonProvider;
 import javax.ws.rs.*;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -19,6 +21,8 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static Provider.MyJacksonJsonProvider.MAPPER;
 
 /**
  * Created by Luxiam on 8/27/2017.
@@ -29,6 +33,9 @@ public class MessageServiceRest {
 
     @EJB
     IMessageDAO dao;
+
+    @Inject
+    private MessageSessionHandler handler;
 
     private static final String BASE_URI = "https://localhost:8181/api";
     private static final String REST_URI = "/message";
@@ -85,9 +92,14 @@ public class MessageServiceRest {
     @GET
     @Produces("application/json")
     @Path("/all")
-    public List<Message> getAll() {
+    public Response getAll() {
+        System.out.println("Sending list of all messeges");
         List<Message> message = dao.getAllMessages();
-        return message;
+        return Response.ok().entity(message).build();
+    }
+
+    public Response optionsAll(){
+        return Response.ok().build();
     }
 
     @GET
@@ -102,6 +114,8 @@ public class MessageServiceRest {
     @Path("/sendmessage")
     public Response pressistNewMessage (@FormParam("likes") int likes, @FormParam("message") String message, @FormParam("owner_id") int owner_id) {
 
+        JsonProvider provider = JsonProvider.provider();
+
         //create message from form data
         JsonBasicEnvelope json = new JsonBasicEnvelope();
         final Message newMessage = new Message();
@@ -112,10 +126,12 @@ public class MessageServiceRest {
         WebTarget resource = ClientBuilder.newClient().target(BASE_URI+"/user/id/"+owner_id).register(new Authenticator("Luxiam","admin"));
         String jsonMessage = resource.request(MediaType.APPLICATION_JSON).get(String.class);
         try {
-            Users owner = MyJacksonJsonProvider.MAPPER.readValue(jsonMessage, Users.class);
+            Users owner = MAPPER.readValue(jsonMessage, Users.class);
             newMessage.setOwner(owner);
 
             dao.persist(newMessage);
+
+            handler.sendToAllConnectedSessions(MAPPER.writeValueAsString(newMessage));
 
             List<Link> linkList = new ArrayList<>();
             linkList.add(new Link(BASE_URI+REST_URI+"/id/"+newMessage.getId(),"self"));
@@ -148,7 +164,7 @@ public class MessageServiceRest {
         try {
 
             JSONObject jsonObject = new JSONObject(jsonMessage);
-            Message message = MyJacksonJsonProvider.MAPPER.readValue(jsonObject.getJSONObject("data").toString(),Message.class);
+            Message message = MAPPER.readValue(jsonObject.getJSONObject("data").toString(),Message.class);
 
             System.out.println(message.getMessage());
 

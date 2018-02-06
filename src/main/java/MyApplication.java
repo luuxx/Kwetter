@@ -1,3 +1,4 @@
+import Filter.CORSFilter;
 import Provider.MyJacksonJsonProvider;
 
 import javax.ws.rs.ApplicationPath;
@@ -16,7 +17,8 @@ public class MyApplication extends Application{
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
         h.add(org.glassfish.jersey.jackson.JacksonFeature.class);
-        h.add( MyJacksonJsonProvider.class);
+        h.add(MyJacksonJsonProvider.class);
+        h.add(CORSFilter.class);
         return h;
     }
 

@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table
 @NamedQueries({
-        @NamedQuery(name = "Message.listByOwner", query = "select m from Message m INNER JOIN m.owner m2 WHERE m2.Id = :id"),
+        @NamedQuery(name = "Message.listByOwner", query = "select m from Message m INNER JOIN m.owner m2 WHERE m2.Id = :id ORDER BY m.Id desc"),
         @NamedQuery(name = "Message.getAllMessages", query = "select m from Message m ORDER BY m.Id desc ")
 })
 @JsonIgnoreProperties(ignoreUnknown = true)
